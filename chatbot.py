@@ -5,9 +5,10 @@ from utils import send_whatsapp_message
 
 class Chatbot:
     def __init__(self):
-        self.sessions = {}  # Guardar estados de conversaciones
+        self.sessions = {}
 
     def handle_message(self, message, sender):
+        message = message.strip().lower()
         if sender not in self.sessions:
             self.sessions[sender] = {"step": 0, "data": {}}
         

@@ -1,9 +1,7 @@
 from flask import Flask, request
 from chatbot import Chatbot
-import config
 
 app = Flask(__name__)
-
 chatbot = Chatbot()
 
 @app.route("/webhook", methods=["POST"])
@@ -14,4 +12,6 @@ def webhook():
     return response
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
